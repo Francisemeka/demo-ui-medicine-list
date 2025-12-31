@@ -20,7 +20,8 @@ connectDB().catch(err => {
 
 
 app.use(cors({
-  origin: "http://localhost:3000", // frontend origin
+  // updated cors allowed origins allow Vite (5173)
+  origin: ["http://localhost:3000", "http://localhost:5173"], // frontend origin
   methods: ["GET", "DELETE", "PUT", "POST"],
   credentials: true
 }));
@@ -43,5 +44,6 @@ app.get("/", (req, res) => {
   res.send("Supply Chain Management API Running...");
 });
 
+// changed the backend port to 5000 so the frontend can connect properly
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
